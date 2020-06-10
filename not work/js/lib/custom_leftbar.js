@@ -11,9 +11,6 @@ function dt(){
 			  "paging":         false,
 			  "scrollX": true,
 			  "dom": "Bfrtip",
-			  "buttons": [
-			              "copy", "csv", "excel", "pdf", "print"
-
-        				]
+			  "buttons": ["copy", "csv", "excel", "pdf", "print"]
 		} );
 }
