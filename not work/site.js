@@ -615,7 +615,81 @@ function GetURLParameter(sParam){
 	    }
 	}
 }
-//-----------------------
+//----------------------- DEBUG ------------------
 
+function handleEnterDEBUG(inField, e) {
+   	var charCode;
+	//Get key code (support for all browsers)
+	if(e && e.which){
+	    charCode = e.which;
+	}else if(window.event){
+	    e = window.event;
+	    charCode = e.keyCode;
+	}
+
+	if(charCode == 13) {
+	   if (e.preventDefault) {
+	       e.preventDefault();
+	   } else {
+	       e.returnValue = false;
+	   }
+	   //Call submit function
+	   alert('popolare la tabella');
+	   //loadNavDEBUG(inField.value);
+	}
+}
+
+function loadNavDEBUG(param) {
+  $.ajax({
+    type: "GET",
+	url: apiEnoclientURL + "getXDM_DOCs",
+    dataType : 'json',
+    cache: false,
+	data:'queryname='+param,
+  success: function(risposta){
+	  //alert("Chiamata OK!!!");
+	  printNavDEBUG(risposta);
+ },
+  error: function(){
+    alert("Chiamata fallita!!!");
+  }
+ });
+}
+
+
+function printNavDEBUG(data){
+   if ( $.fn.dataTable.isDataTable('#matrixRes') ) {
+	  //$('#matrixRes').DataTable().destroy();
+   }
+   $('#matrixRes tbody > tr').remove();
+   for(i=0; i<data.length; i++){
+	   var ele = data[i];
+       var  content  = '<tr>';
+       content +=  '<td>' +  ele.type + '</td>';
+       content +=  '<td>' +  ele.name + '</td>';
+       content +=  '<td>' +  ele.current + '</td>';
+       content +=  '<td>' +  ele.XDM_FilePath + '</td>';
+       content +=  '<td>' +  ele.XDM_FileType + '</td>';
+       content +=  '</tr>';
+       $('#matrixRes').append(content);
+   }
+   if ( $.fn.dataTable.isDataTable('#matrixRes') ) {
+       // never pass here
+       alert("check site.js!");
+   }else {
+       table = $('#matrixRes').DataTable( {
+              "scrollY": "550px",
+              "scrollCollapse": true,
+              "paging": false,
+              "scrollX": true,
+              "paging": false,
+              "info": false,
+              "destroy": true,
+        	  "dom": "Bfrtip",
+        	  "buttons": [ "copy", "csv", "excel", "pdf", "print" ]
+       } );
+   }
+
+}
 
 
