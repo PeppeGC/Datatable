@@ -3,7 +3,6 @@
 
 
 <head>
-	<script data-main="js/navbarSelected2" src="js/lib/require.js"></script>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,18 +11,9 @@
 	<title>Dashboard Template for Bootstrap</title>
 
 	<link href="css/bootstrap.min.css" rel="stylesheet">
+
 	<link href="css/dashboard.css" rel="stylesheet">
-	<link href="css/jquery.dataTables.min.css" rel="stylesheet">
-	<link href="css/buttons.dataTables.min.css" rel="stylesheet">
-	<style>
-    td.details-control {
-    	background: url('images/details_open.png') no-repeat center center;
-    	cursor: pointer;
-	}
-	tr.shown td.details-control {
-    	background: url('images/details_close.png') no-repeat center center;
-	}
-    </style>
+
 	<!--[if lt IE 9]>
 	<script src="js/lib/ie8-responsive-file-warning.js"></script>
 	<![endif]-->
@@ -40,7 +30,6 @@
 
 <body>
 <script src="js/lib/jquery.min.js"></script>
-<script src="js/lib/bootstrap.min.js"></script>
 <script src="site.js"></script>
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -65,32 +54,8 @@
 					</ul>
 				</li>
 			</ul>
-			<form class="navbar-form navbar-right"  method="POST" id="manageHandler" name="manageHandler">
-				<div class="form-control">
-					<label for="typeFormControlSelect">Select type</label>
-					<select  id="typeFormControlSelect" onchange="typeChanged()">>
-						<option value="">--All--</option>
-						<option value="type == DAN_Object">Object</option>
-						<option value="type == DAN_Request">Request</option>
-						<option value="type == XDM_FILE">FILE</option>
-						<option value="type == PLM_XPDM_LOAD">LOAD</option>
-						<option value=""></option>
-						<option value="type == XDM_DOC">DOC</option>
-						<option value="policy == PLM_XDM_DOC">DOC Extractor</option>
-						<option value="policy == PLM_XDM_XPDM">DOC Loader</option>
-						<option value="policy == PLM_XDM_LINKS">DOC BomLink</option>
-						<option value=""></option>
-						<option value="type == XDM_MDI">MDI</option>
-						<option value="policy == PLM_XDM_MDI">MDI SET</option>
-						<option value="policy == PLM_TEMP_XDM_MDI">MDI Temp</option>
-					</select>
-					&nbsp; &nbsp;
-					<label for="stateFormControlSelect">Select state</label>
-					<select  id="stateFormControlSelect">
-						<option value="">--All--</option>
-					</select>
-				</div>
-				<!-- custom_leftbar.js-->
+			<form class="navbar-form navbar-right"  method="POST" >
+				<input type="text" id="param" class="form-control" placeholder="Search..."  onkeypress="handleEnterLog1(this, event)">
 			</form>
 		</div>
 	</div>
@@ -106,6 +71,9 @@
 			<ul class="nav nav-sidebar" id="sidebar2">
 				<!-- custom_leftbar.js-->
 			</ul>
+			<ul class="nav nav-sidebar" id="sidebar3">
+				<!-- custom_leftbar.js-->
+			</ul>
 		</div>
 
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -118,13 +86,6 @@
 						<th>Name</th>
 						<th>Current</th>
 						<th>ID</th>
-						<th>XPDMLOAD_Type</th>
-						<th>Priority</th>
-						<th>MDI_IsAssembly</th>
-						<th>MDI_PLM_IsOldRevision</th>
-						<th>MDI_DocumentType</th>
-						<th>FilePath</th>
-						<th>FileType</th>
 					</tr>
 					</thead>
 

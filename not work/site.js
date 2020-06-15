@@ -693,3 +693,70 @@ function printNavDEBUG(data){
 }
 
 
+
+function handleEnterLog1(inField, e) {
+   	var charCode;
+   	//var selType = document.getElementById("typeFormControlSelect").value;
+	//Get key code (support for all browsers)
+	if(e && e.which){
+	    charCode = e.which;
+	}else if(window.event){
+	    e = window.event;
+	    charCode = e.keyCode;
+	}
+
+	if(charCode == 13) {
+	   if (e.preventDefault) {
+	       e.preventDefault();
+	   } else {
+	       e.returnValue = false;
+	   }
+	   //Call submit function
+	   //alert(inField.id+'--->'+inField.value);
+       //alert(manageHandler.typeFormControlSelect.options[1].value);
+       //alert(selType);
+       //$('#logcontent').load("test.html");
+       // $('#logcontent').html(data);
+	   //window.open(dowloadServlet + inField.value, "_blank");
+	   loadLog1(inField.value);
+	}
+}
+
+
+
+function loadLog1(data){
+    alert(data);
+    $('#logcontent').append("-------------->");
+    $("#logcontent").load("test.html");
+    alert("content - loaded");
+}
+
+
+function typeChanged(sParam){
+	var selType = document.getElementById("typeFormControlSelect").value;
+	var selState = document.getElementById("stateFormControlSelect").value;
+	//alert("-->"+selType);
+/*
+Se  typeFormControlSelect è selezionato Object allora ->
+valorizzare stateFormControlSelect con i valori (all,Exist)
+ma prima controllare:
+se il valore di -selState- è presente (in All, Exist) ---> se si: stateFormControlSelect deve restare come prima, altrimenti diventa: All
+
+Object: All,Exist
+Request: All,Exist
+
+FILE:	All,CREATED,XPDM_READY
+
+LOAD:	All,CREATED,PREPARED,READY,SUBMITTED,LOADED
+
+DOC
+DOC Extractor
+DOC Loader
+DOC BomLink
+--> INIZIA con "DOC": All,CREATED,PROCESSING,COMPLETED,ERROR
+
+MDI: All
+MDI SET: All,CREATED,XPDM_READY,XPDM_LOADING,XPDM_LOADED,CUSTOM_LOADING,COMPLETED,ERROR
+MDI Temp: All,Exists
+*/
+}
