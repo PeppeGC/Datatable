@@ -1,93 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
-
-
+<html>
 <head>
-    <script data-main="js/navbarSelected1" src="js/lib/require.js"></script>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content=""><meta name="author" content="">
+    <meta charset="utf-8" />
+    <title></title>
 
-    <title>Dashboard Template for Bootstrap</title>
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css">
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/dashboard.css" rel="stylesheet">
-    <link href="css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="css/buttons.dataTables.min.css" rel="stylesheet">
-    <style>
-    td.details-control {
-    	background: url('images/details_open.png') no-repeat center center;
-    	cursor: pointer;
-	}
-	tr.shown td.details-control {
-    	background: url('images/details_close.png') no-repeat center center;
-	}
-    </style>
-    <!--[if lt IE 9]>
-    <script src="js/lib/ie8-responsive-file-warning.js"></script>
-    <![endif]-->
+	<link href="css/buttons.dataTables.min.css" rel="stylesheet">
 
-    <script src="js/lib/ie-emulation-modes-warning.js"></script>
 
-    <!--//--><!--[if lt IE 9]>
-    <script src="js/lib/html5shiv.min.js"></script>
-
-    <script src="js/lib/respond.min.js"></script>
-    <![endif]-->
 </head>
-
-
 <body>
-<script src="js/lib/jquery.min.js"></script>
-<script src="js/lib/bootstrap.min.js"></script>
-<script src="site.js"></script>
 
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
 
-			<a class="navbar-brand" href="#">Enovia Client</a>
-		</div>
-		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href='#' onclick='javascript:enoviaClientLogout()'>Logout</a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Help <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="#" onclick='javascript:aboutEnoviaClient()'>About Enovia Client</a></li>
-					</ul>
-				</li>
-			</ul>
-			<form class="navbar-form navbar-right"  method="POST" id="manageHandler">
-                <input type="text" id="param" class="form-control" placeholder="Search..."  onkeypress="handleEnterDEBUG(this, event)">
-			</form>
-		</div>
-	</div>
-</div>
+ 	<script src="js/buttons.flash.min.js"></script>
+ 	<script src="js/buttons.print.min.js"></script>
+ 	<script src="js/dataTables.buttons.min.js"></script>
+ 	<script src="js/jszip.min.js"></script>
+ 	<script src="js/pdfmake.js"></script>
+ 	<script src="js/vfs_fonts.js"></script>
+ 	<script src="js/buttons.html5.min.js"></script>
 
-<div class="container-fluid">
-	<div class="row">
 
-		<div class="col-sm-3 col-md-2 sidebar">
-			<ul class="nav nav-sidebar" id="sidebar1">
-				<!-- custom_leftbar.js-->
-			</ul>
-			<ul class="nav nav-sidebar" id="sidebar2">
-				<!-- custom_leftbar.js-->
-			</ul>
-		</div>
 
-		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<h2 class="sub-header">Results</h2>
-			<div class="table-responsive">
-<table id="example" class="table table-striped">
+    <script>
+	$(document).ready(function()  {
+		$('#example').DataTable( {
+			  "scrollY":        "200px",
+			  "scrollCollapse": true,
+			  "paging":         false,
+			  "scrollX": true,
+			  "dom": "Bfrtip",
+			  "buttons": [
+			              "copy", "csv", "excel", "pdf", "print"
+
+        				]
+		} );
+	} );
+ 	</script>
+
+
+
+
+<table id="example" class="display" style="width:100%">
         <thead>
             <tr>
                 <th>Name</th>
@@ -95,10 +52,9 @@
                 <th>Office</th>
                 <th>Age</th>
                 <th>Start date</th>
-                <th>Salaryo</th>
+                <th>Salary</th>
             </tr>
         </thead>
-
         <tbody>
             <tr>
                 <td>Tiger Nixon</td>
@@ -133,29 +89,17 @@
                 <td>$433,060</td>
             </tr>
         </tbody>
-
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </tfoot>
     </table>
-		</div>
-			<div><a href='#' onclick='javascript:clearTable()'>CLEAR</a></div>
-		</div>
-
-
-	</div>
-</div>
-
-
-
-<!--//-->
-
-
-
-
-
-
-<script src="js/bootstrap.min.js"></script>
-<script src="js/docs.min.js"></script>
-<!--//-->
-<script src="js/ie10-viewport-bug-workaround.js"></script>
 
 </body>
 </html>

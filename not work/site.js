@@ -732,10 +732,77 @@ function loadLog1(data){
 }
 
 
-function typeChanged(sParam){
-	var selType = document.getElementById("typeFormControlSelect").value;
-	var selState = document.getElementById("stateFormControlSelect").value;
-	//alert("-->"+selType);
+function typeChanged(){
+	var selTypeObj = document.getElementById("typeFormControlSelect");
+	var option = document.getElementById("stateFormControlSelect");
+	var dim_prec = option.length
+	var selState = option.value;
+	//alert("-->"+selTypeObj.value);
+	var indexSelType = selTypeObj.selectedIndex;
+    if(indexSelType == -1) return null;
+    selected = selTypeObj.options[indexSelType].innerHTML;
+    //alert(selected);
+
+    state_BASIC = new Array();
+    state_FILE = new Array();
+    state_DOC = new Array();
+    state_MDI = new Array();
+    state_LOAD = new Array();
+    //State definition policy
+    state_DOC[0]=new Option('All','All');
+    state_DOC[1]=new Option('CREATED','CREATED');
+    state_DOC[2]=new Option('PROCESSING','PROCESSING');
+    state_DOC[3]=new Option('COMPLETED','COMPLETED');
+    state_DOC[4]=new Option('ERROR','ERROR');
+
+    state_MDI[0]=new Option('All','All');
+    state_MDI[1]=new Option('CREATED','CREATED');
+    state_MDI[2]=new Option('XPDM_READY','XPDM_READY');
+    state_MDI[3]=new Option('XPDM_LOADING','XPDM_LOADING');
+    state_MDI[4]=new Option('XPDM_LOADED','XPDM_LOADED');
+    state_MDI[5]=new Option('CUSTOM_LOADING','CUSTOM_LOADING');
+    state_MDI[6]=new Option('COMPLETED','COMPLETED');
+    state_MDI[7]=new Option('ERROR','ERROR');
+
+    state_LOAD[0]=new Option('All','All');
+    state_LOAD[1]=new Option('CREATED','CREATED');
+    state_LOAD[2]=new Option('PREPARED','PREPARED');
+    state_LOAD[3]=new Option('READY','READY');
+    state_LOAD[4]=new Option('SUBMITTED','SUBMITTED');
+    state_LOAD[5]=new Option('LOADED','LOADED');
+
+    state_FILE[0]=new Option('All','All');
+    state_FILE[1]=new Option('CREATED','CREATED');
+    state_FILE[2]=new Option('XPDM_READY','XPDM_READY');
+
+    state_BASIC[0]=new Option('All','All');
+
+    if(selected.startsWith("DOC")){
+        array_rif = state_DOC;
+    }else if(selected=="MDI SET"){
+         array_rif = state_MDI;
+    }else if(selected=="LOAD"){
+         array_rif = state_LOAD;
+    }else if(selected=="FILE"){
+          array_rif = state_MDI;
+    }else{
+        array_rif = state_BASIC;
+    }
+
+	for(i=0;i<array_rif.length;i++){
+		option.options[i]=array_rif[i];
+    }
+	//calculate size option
+	dim_att = array_rif.length
+	//remove exceeded option
+	if(dim_att < dim_prec){
+		for(var i=dim_att;i<dim_prec;i++){
+			option.remove(option.length-1)
+		}
+	}
+
+
+
 /*
 Se  typeFormControlSelect è selezionato Object allora ->
 valorizzare stateFormControlSelect con i valori (all,Exist)
