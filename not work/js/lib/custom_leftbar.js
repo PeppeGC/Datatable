@@ -11,7 +11,9 @@ function dt(){
 			  "paging":         false,
 			  "scrollX": true,
 			  "dom": "Bfrtip",
-			  "buttons": ["copy", "csv", "excel", "pdf", "print"]
+			  "buttons": ["copy",
+                        {extend: 'csv', exportOptions: {columns: ':visible'}},
+			        "excel", "pdf", "print"]
 		} );
 
 	// Get the column number
