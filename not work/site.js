@@ -725,13 +725,16 @@ function handleEnterLogTest(inField, e) {
 
 
 function loadLog1(data){
-    alert(data);
+    //alert(data);
     //$('#logcontent').append("-------------->");
     //$("#logcontent").load("test.html");
     alert("content - loading...");
     $('#matrixRes').DataTable( {
+        "processing": true,
+        "serverSide": true,
         "ajax": {
             "url": "data/arrays_custom_prop.txt",
+            "dataType": "jsonp",
             "dataSrc": "demo"
         }
     } );
