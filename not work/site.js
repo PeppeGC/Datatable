@@ -694,7 +694,7 @@ function printNavDEBUG(data){
 
 
 
-function handleEnterLog1(inField, e) {
+function handleEnterLogTest(inField, e) {
    	var charCode;
    	//var selType = document.getElementById("typeFormControlSelect").value;
 	//Get key code (support for all browsers)
@@ -726,9 +726,16 @@ function handleEnterLog1(inField, e) {
 
 function loadLog1(data){
     alert(data);
-    $('#logcontent').append("-------------->");
-    $("#logcontent").load("test.html");
-    alert("content - loaded");
+    //$('#logcontent').append("-------------->");
+    //$("#logcontent").load("test.html");
+    alert("content - loading...");
+    $('#matrixRes').DataTable( {
+        "ajax": {
+            "url": "data/arrays_custom_prop.txt",
+            "dataSrc": "demo"
+        }
+    } );
+
 }
 
 
