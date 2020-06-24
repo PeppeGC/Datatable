@@ -725,6 +725,9 @@ function handleEnterLogTest(inField, e) {
 
 
 function loadLog1(data){
+    if ( $.fn.dataTable.isDataTable('#matrixRes') ) {
+        $('#matrixRes').DataTable().destroy();
+    }
     //alert(data);
     //$('#logcontent').append("-------------->");
     //$("#logcontent").load("test.html");
