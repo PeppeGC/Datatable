@@ -738,7 +738,14 @@ function loadLog1(data){
         "ajax": {
             "url": "data/arrays_custom_prop.txt",
             "dataType": "jsonp",
-            "dataSrc": "demo"
+            "dataSrc": "demo",
+            success: function(risposta){
+                //alert("Chiamata OK!!!");
+                alert(risposta);
+            },
+            error: function(){
+                alert("Chiamata fallita!!!");
+            }
         }
     } );
 
