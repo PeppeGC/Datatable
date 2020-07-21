@@ -22,6 +22,12 @@ define([
         console.log('required plugins loading...');
 		dt();
 	    console.log('required plugins loaded...');
+
+ $('.it-date-datepicker').datepicker({
+      inputFormat: ["dd/MM/yyyy"],
+      outputFormat: 'dd/MM/yyyy',
+    });
+
 	    $('.input-daterange input').each(function() {
         	  //$(this).datepicker('clearDates');
         	 // alert($(this.value));
