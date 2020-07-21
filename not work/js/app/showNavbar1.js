@@ -22,12 +22,17 @@ define([
             console.log('required plugins loading...');
             dt();
             console.log('required plugins loaded...');
-
-
-            $('.input-daterange input').each(function() {
-                  //$(this).datepicker('clearDates');
-                 // alert($(this.value));
-                  $(this).datepicker();
-            });
 	    });
+
+	      $('#min-date').datepicker({
+            next: '#max-date',
+            outputFormat: 'MM/dd/y',
+            firstDayOfWeek: 1
+          });
+
+          $('#max-date').datepicker({
+            previous: '#min-date',
+            outputFormat: 'MM/dd/y',
+            firstDayOfWeek: 1
+           });
 });

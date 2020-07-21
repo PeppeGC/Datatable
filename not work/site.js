@@ -13,6 +13,36 @@ $(document).ready(function() {
      return false;
   });
 
+  // Aggiunto DatePicker https://github.com/eureka2/ab-datepicker
+
+
+
+
+  // Re-draw the table when the a date range filter changes
+  $('.date-range-filter').change(function() {
+    table.draw();
+  });
+
+  $.fn.dataTable.ext.search.push(
+    function(settings, data, dataIndex) {
+      //var max = $('#max-date').val();
+      //var min = $('#min-date').val();
+      //var createdAt = data[4] || 0; // Our date column in the table
+
+      let max = new Date($('#max-date').val());
+      let min = new Date($('#min-date').val());
+      let createdAt = new Date(data[4]);
+
+      if (
+        (min == "" || max == "") ||
+        (createdAt >= min) && (createdAt <= max)
+        //(moment(createdAt).isSameOrAfter(min) && moment(createdAt).isSameOrBefore(max))
+      ) {
+        return true;
+      }
+      return false;
+    }
+  );
 });
 
 var apiLoaderURL = 'http://localhost:9770/datamigration/db/rest/loader/v1/';
