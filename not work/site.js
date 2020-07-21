@@ -18,7 +18,7 @@ $(document).ready(function() {
 
 
 
-  // Re-draw the table when the a date range filter changes
+  // Re-draw the table when the a date range filter changes - controllare
   $('.date-range-filter').change(function() {
     table.draw();
   });
