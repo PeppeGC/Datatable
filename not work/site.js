@@ -13,9 +13,6 @@ $(document).ready(function() {
      return false;
   });
 
-
-
-
 });
 
 var apiLoaderURL = 'http://localhost:9770/datamigration/db/rest/loader/v1/';
