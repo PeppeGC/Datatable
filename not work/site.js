@@ -23,24 +23,7 @@ $(document).ready(function() {
     table.draw();
   });
 
-  $.fn.dataTable.ext.search.push(
-    function(settings, data, dataIndex) {
-      //var max = $('#max-date').val();
-      //var min = $('#min-date').val();
-      //var createdAt = data[4] || 0; // Our date column in the table
 
-      let max = new Date($('#max-date').val());
-      let min = new Date($('#min-date').val());
-      let createdAt = new Date(data[4]);
-
-      if (min == 'Invalid Date' || max == 'Invalid Date'){
-        return true;
-      } else if ((createdAt >= min) && (createdAt <= max)){
-            return true;
-        }
-      return false;
-    }
-  );
 });
 
 var apiLoaderURL = 'http://localhost:9770/datamigration/db/rest/loader/v1/';
@@ -50,8 +33,6 @@ var findLimit = 100;
 function aboutEnoviaClient() {
 	alert(" Enovia Client 1.0\n Plm-Systems s.r.l. \n All rights reserved");
 }
-
-
 
 function enoviaLogin(base_auth) {
   $.ajax({

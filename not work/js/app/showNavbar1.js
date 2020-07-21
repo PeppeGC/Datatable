@@ -35,4 +35,23 @@ define([
             outputFormat: 'MM/dd/y',
             firstDayOfWeek: 1
            });
+
+             $.fn.dataTable.ext.search.push(
+               function(settings, data, dataIndex) {
+                 //var max = $('#max-date').val();
+                 //var min = $('#min-date').val();
+                 //var createdAt = data[4] || 0; // Our date column in the table
+
+                 let max = new Date($('#max-date').val());
+                 let min = new Date($('#min-date').val());
+                 let createdAt = new Date(data[4]);
+
+                 if (min == 'Invalid Date' || max == 'Invalid Date'){
+                   return true;
+                 } else if ((createdAt >= min) && (createdAt <= max)){
+                       return true;
+                   }
+                 return false;
+               }
+             );
 });
