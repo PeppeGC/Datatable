@@ -16,6 +16,10 @@
 	<link href="css/jquery.dataTables.min.css" rel="stylesheet">
 	<link href="css/buttons.dataTables.min.css" rel="stylesheet">
 
+	<!-- Aggiunto DatePicker https://github.com/qodesmith/datepicker#installation -->
+	<link rel="stylesheet" href="datepicker.min.css">
+
+
 	<style>
     td.details-control {
     	background: url('images/details_open.png') no-repeat center center;
@@ -73,6 +77,7 @@
 				</li>
 			</ul>
 
+
 			<form class="navbar-form navbar-right"  method="POST" id="manageHandler" name="manageHandler">
 				<div class="form-control">
 					<label for="typeFormControlSelect">Select type</label>
@@ -104,8 +109,6 @@
 	</div>
 </div>
 
-
-
 <div class="container-fluid">
 	<div class="row">
 
@@ -134,7 +137,12 @@
 					Toggle column:
 				</div>
 
-
+				<!--Aggiunto Div Date Selector-->
+				<div class="input-group input-daterange">
+					<input type="text" id="min-date" class="form-control date-range-filter" data-date-format="yyyy-mm-dd" placeholder="From:">
+					<div class="input-group-addon">to</div>
+					<input type="text" id="max-date" class="form-control date-range-filter" data-date-format="yyyy-mm-dd" placeholder="To:">
+				</div>
 
 				<table id="example" class="display" style="width:100%">
 					<thead>
@@ -204,9 +212,6 @@
 
 
 <!--//-->
-
-
-
 
 
 

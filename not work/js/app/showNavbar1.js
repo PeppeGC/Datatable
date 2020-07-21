@@ -10,7 +10,8 @@ define([
     "jszip.min",
     "pdfmake",
     "vfs_fonts",
-    "buttons.html5.min"
+    "buttons.html5.min",
+    "datepicker.min"
 ], function($) {
 	    //Solution for missing Excel Button:
 	    //https://datatables.net/forums/discussion/49747/excel-button-not-showing-up-using-webpack
@@ -21,5 +22,10 @@ define([
         console.log('required plugins loading...');
 		dt();
 	    console.log('required plugins loaded...');
+	    $('.input-daterange input').each(function() {
+        	  //$(this).datepicker('clearDates');
+        	 // alert($(this.value));
+        	  $(this).datepicker();
+          });
 	    });
 });
