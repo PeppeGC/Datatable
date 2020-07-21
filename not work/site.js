@@ -33,13 +33,11 @@ $(document).ready(function() {
       let min = new Date($('#min-date').val());
       let createdAt = new Date(data[4]);
 
-      if (
-        (min == "" || max == "") ||
-        (createdAt >= min) && (createdAt <= max)
-        //(moment(createdAt).isSameOrAfter(min) && moment(createdAt).isSameOrBefore(max))
-      ) {
+      if (min == 'Invalid Date' || max == 'Invalid Date'){
         return true;
-      }
+      } else if ((createdAt >= min) && (createdAt <= max)){
+            return true;
+        }
       return false;
     }
   );
