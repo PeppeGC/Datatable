@@ -52,6 +52,18 @@ console.log('initDateTime');
         reDrawTable();
       });
 
+      $('#clear-min').click(function() {
+        $('#min-date').val('');
+        $('#min-time').val('');
+        reDrawTable();
+      });
+
+      $('#clear-max').click(function() {
+        $('#max-date').val('');
+        $('#max-time').val('');
+        reDrawTable();
+      });
+
       //Gestione filtro data della table
       $.fn.dataTable.ext.search.push(
           function(settings, data, dataIndex) {
