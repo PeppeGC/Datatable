@@ -11,7 +11,9 @@ define([
     "pdfmake",
     "vfs_fonts",
     "buttons.html5.min",
-    "datepicker.min"
+    "datepicker.min",
+    "jquery.timepicker.min",
+    "plm-time"
 ], function($) {
 	    //Solution for missing Excel Button:
 	    //https://datatables.net/forums/discussion/49747/excel-button-not-showing-up-using-webpack
@@ -23,35 +25,4 @@ define([
             dt();
             console.log('required plugins loaded...');
 	    });
-
-	      $('#min-date').datepicker({
-            next: '#max-date',
-            outputFormat: 'MM/dd/y',
-            firstDayOfWeek: 1
-          });
-
-          $('#max-date').datepicker({
-            previous: '#min-date',
-            outputFormat: 'MM/dd/y',
-            firstDayOfWeek: 1
-           });
-
-             $.fn.dataTable.ext.search.push(
-               function(settings, data, dataIndex) {
-                 //var max = $('#max-date').val();
-                 //var min = $('#min-date').val();
-                 //var createdAt = data[4] || 0; // Our date column in the table
-
-                 let max = new Date($('#max-date').val());
-                 let min = new Date($('#min-date').val());
-                 let createdAt = new Date(data[4]);
-
-                 if (min == 'Invalid Date' || max == 'Invalid Date'){
-                   return true;
-                 } else if ((createdAt >= min) && (createdAt <= max)){
-                       return true;
-                   }
-                 return false;
-               }
-             );
 });

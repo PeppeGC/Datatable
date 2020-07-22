@@ -12,18 +12,6 @@ $(document).ready(function() {
      //preventDefault
      return false;
   });
-
-  // Aggiunto DatePicker https://github.com/eureka2/ab-datepicker
-
-
-
-
-  // Re-draw the table when the a date range filter changes - controllare
-  $('.date-range-filter').change(function() {
-    table.draw();
-  });
-
-
 });
 
 var apiLoaderURL = 'http://localhost:9770/datamigration/db/rest/loader/v1/';
