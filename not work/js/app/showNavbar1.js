@@ -25,4 +25,8 @@ define([
             dt();
             console.log('required plugins loaded...');
 	    });
+
+	    initDateTime();
 });
+
+
