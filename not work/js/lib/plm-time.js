@@ -1,3 +1,18 @@
+function initDate(){
+      // Aggiunto DatePicker https://github.com/eureka2/ab-datepicker
+      $('#min-date').datepicker({
+        next: '#max-date',
+        outputFormat: 'MM/dd/y',
+        firstDayOfWeek: 1
+      });
+
+      $('#max-date').datepicker({
+        previous: '#min-date',
+        outputFormat: 'MM/dd/y',
+        firstDayOfWeek: 1
+        });
+}
+
 function initTime(){
           // Aggiunto TimePicker https://timepicker.co/
           $('.timepicker').timepicker({
@@ -16,25 +31,13 @@ function initTime(){
           });
 }
 
-function initDate(){
-      // Aggiunto DatePicker https://github.com/eureka2/ab-datepicker
-      $('#min-date').datepicker({
-        next: '#max-date',
-        outputFormat: 'MM/dd/y',
-        firstDayOfWeek: 1
-      });
 
-      $('#max-date').datepicker({
-        previous: '#min-date',
-        outputFormat: 'MM/dd/y',
-        firstDayOfWeek: 1
-        });
-}
 
 function reDrawTable(){
-        table.draw();
         $('#max-time').attr('disabled', $('#max-date').val() == '');
         $('#min-time').attr('disabled', $('#min-date').val() == '');
+        table.draw();
+        filterDateTime();
 }
 
 function initDateTime(){
@@ -69,7 +72,9 @@ function initDateTime(){
         $('#max-time').val('');
         reDrawTable();
       });
+}
 
+function filterDateTime(){
       //Gestione filtro data della table
       $.fn.dataTable.ext.search.push(
           function(settings, data, dataIndex) {
