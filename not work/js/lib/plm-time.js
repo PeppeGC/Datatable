@@ -32,14 +32,6 @@ function initTime(){
 }
 
 
-
-function reDrawTable(){
-        $('#max-time').attr('disabled', $('#max-date').val() == '');
-        $('#min-time').attr('disabled', $('#min-date').val() == '');
-        table.draw();
-        filterDateTime();
-}
-
 function initDateTime(){
     console.log('initDateTime');
     initDate();
@@ -72,6 +64,13 @@ function initDateTime(){
         $('#max-time').val('');
         reDrawTable();
       });
+}
+
+function reDrawTable(){
+        $('#max-time').attr('disabled', $('#max-date').val() == '');
+        $('#min-time').attr('disabled', $('#min-date').val() == '');
+        filterDateTime();
+        table.draw();
 }
 
 function filterDateTime(){
