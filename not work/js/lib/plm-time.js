@@ -4,7 +4,7 @@ function initTime(){
               change: function(time) {
               reDrawTable();
               },
-              timeFormat: 'hh:mm p',
+              timeFormat: 'hh:mm:ss p',
               interval: 30,
               minTime: '24:00',
               maxTime: '23:59',
@@ -38,14 +38,20 @@ function reDrawTable(){
 }
 
 function initDateTime(){
-console.log('initDateTime');
+    console.log('initDateTime');
     initDate();
     initTime();
 
       $('#max-date').attr('readonly', true);
       $('#min-date').attr('readonly', true);
       $('#max-time').attr('disabled', true);
-      $('#min-time').attr('disabled', true);
+      //$('#min-time').attr('disabled', true);
+
+      //STart GC
+      var date = new Date();
+      $('#min-date').datepicker('setDate', date);
+      $('#max-time').attr('disabled', true);
+      //End GC
 
       // Re-draw the table when the a date range filter changes - controllare
       $('.date-range-filter').change(function() {
