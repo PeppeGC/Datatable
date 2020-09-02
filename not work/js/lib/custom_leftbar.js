@@ -11,6 +11,7 @@ function dt(){
 			  "paging":         false,
 			  "scrollX": true,
 			  "stateSave": true,
+			  "processing": true,
 			  "dom": "Bfrtip",
 			  "buttons": [
 			            {extend: 'copy', exportOptions: {columns: ':visible'}},
@@ -18,7 +19,18 @@ function dt(){
                         {extend: 'excel', exportOptions: {columns: ':visible'}},
                         {extend: 'pdf', exportOptions: {columns: ':visible'}},
                         {extend: 'print', exportOptions: {columns: ':visible'}}
-                        ]
+                        ],
+              "columnDefs": [
+               				{
+                              "targets": [2],
+                              "visible": false
+                            },
+                              {
+                                   "targets": [3,4],
+                                   "visible": false,
+                                   "className": "noVis"
+                               }
+                            ]
 		} );
 
 	// Get the column number
