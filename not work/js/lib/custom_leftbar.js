@@ -10,6 +10,7 @@ function dt(){
 			  "scrollCollapse": true,
 			  "paging":         false,
 			  "scrollX": true,
+			  "stateSave": true,
 			  "dom": "Bfrtip",
 			  "buttons": [
 			            {extend: 'copy', exportOptions: {columns: ':visible'}},

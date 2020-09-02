@@ -11,6 +11,7 @@ define([
     "pdfmake",
     "vfs_fonts",
     "buttons.html5.min",
+    "buttons.colVis.min",
     "datepicker.min",
     "jquery.timepicker.min",
     "plm-time"

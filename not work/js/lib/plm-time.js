@@ -1,5 +1,5 @@
 function initDate(){
-      // Aggiunto DatePicker https://github.com/eureka2/ab-datepicker
+      // Added DatePicker
       $('#min-date').datepicker({
         next: '#max-date',
         outputFormat: 'MM/dd/y',
@@ -14,44 +14,44 @@ function initDate(){
 }
 
 function initTime(){
-          // Aggiunto TimePicker https://timepicker.co/
-          $('.timepicker').timepicker({
-              change: function(time) {
-              reDrawTable();
-              },
-              timeFormat: 'hh:mm:ss p',
-              interval: 30,
-              minTime: '24:00',
-              maxTime: '23:59',
-              //defaultTime: 'now',
-              startTime: '08:00',
-              dynamic: false,
-              dropdown: true,
-              scrollbar: true
-          });
+    // Added TimePicker
+    $('.timepicker').timepicker({
+        change: function(time) {
+        reDrawTable();
+        },
+        timeFormat: 'hh:mm:ss p',
+        interval: 30,
+        minTime: '24:00',
+        maxTime: '23:59',
+        //defaultTime: 'now',
+        startTime: '08:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
 }
 
 
 function initDateTime(){
-    console.log('initDateTime');
-    initDate();
-    initTime();
+	  console.log('initDateTime');
+      initDate();
+      initTime();
 
-      $('#max-date').attr('readonly', true);
       $('#min-date').attr('readonly', true);
+      $('#max-date').attr('readonly', true);
+
+      var date = new Date();
+      //var day = date.getDate();
+      //var month = date.getMonth() + 1;
+      //var year = date.getFullYear();
+      //if (month < 10) month = "0" + month;
+      //if (day < 10) day = "0" + day;
+      //var today =  month + "/" + day + "/" + year;
+      //$("#min-date").attr("value", today);
+      $('#min-date').datepicker('setDate', date);
+
       $('#max-time').attr('disabled', true);
       //$('#min-time').attr('disabled', true);
-
-      //STart GC
-      var date = new Date();
-      $('#min-date').datepicker('setDate', date);
-      $('#max-time').attr('disabled', true);
-      //End GC
-
-      // Re-draw the table when the a date range filter changes - controllare
-      $('.date-range-filter').change(function() {
-        reDrawTable();
-      });
 
       $('#clear-min').click(function() {
         $('#min-date').val('');
@@ -64,14 +64,24 @@ function initDateTime(){
         $('#max-time').val('');
         reDrawTable();
       });
+
+      // Re-draw the table when the a date range filter changes
+      $('.date-range-filter').change(function() {
+        reDrawTable();
+      });
 }
 
+
 function reDrawTable(){
-        $('#max-time').attr('disabled', $('#max-date').val() == '');
-        $('#min-time').attr('disabled', $('#min-date').val() == '');
-        filterDateTime();
-        table.draw();
+    	$('#min-time').attr('disabled', $('#min-date').val() == '');
+    	$('#max-time').attr('disabled', $('#max-date').val() == '');
+
+	 		filterDateTime();
+	 		table.draw();
+
 }
+
+
 
 function filterDateTime(){
       //Gestione filtro data della table
