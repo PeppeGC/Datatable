@@ -1,0 +1,12 @@
+
+a { cursor: pointer; }
+
+.cursor-wait {
+	cursor: wait !important;
+}
+
+body.busy-cursor {
+  cursor: progress;
+}
+
+html.wait, html.wait * { cursor: wait !important; }

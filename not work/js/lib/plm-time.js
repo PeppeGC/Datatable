@@ -24,7 +24,7 @@ function initTime(){
         minTime: '24:00',
         maxTime: '23:59',
         //defaultTime: 'now',
-        startTime: '08:00',
+        startTime: '01:00',
         dynamic: false,
         dropdown: true,
         scrollbar: true
@@ -65,6 +65,11 @@ function initDateTime(){
         reDrawTable();
       });
 
+      $('#filter-picker').click(function() {
+          reDrawTable();
+        });
+
+
       // Re-draw the table when the a date range filter changes
       $('.date-range-filter').change(function() {
         reDrawTable();
@@ -75,44 +80,38 @@ function initDateTime(){
 function reDrawTable(){
     	$('#min-time').attr('disabled', $('#min-date').val() == '');
     	$('#max-time').attr('disabled', $('#max-date').val() == '');
-
+	 	if ( $.fn.dataTable.isDataTable('#matrixRes') ) {
 	 		filterDateTime();
 	 		table.draw();
-
+	 	}
 }
 
 
-
 function filterDateTime(){
-      //Gestione filtro data della table
-      $.fn.dataTable.ext.search.push(
-          function(settings, data, dataIndex) {
+$.fn.dataTable.ext.search.push(
+        function(settings, data, dataIndex) {
+            var DATE_COLUMN = data[11];
+            var maxDate = $('#max-date').val();
+            var minDate = $('#min-date').val();
+            var minTime = $('#min-time').val();
+            var maxTime = $('#max-time').val();
+            if(minTime === undefined) minTime = '';
+            if(maxTime === undefined) maxTime = '';
 
-              var DATE_COLUMN = data[4];
+            var max = new Date(maxDate + " " + maxTime);
+            var min = new Date(minDate + " " + minTime);
+            var createdAt = new Date(DATE_COLUMN);
 
-              var maxDate = $('#max-date').val();
-              var minDate = $('#min-date').val();
-
-              var minTime = $('#min-time').val();
-              var maxTime = $('#max-time').val();
-              if(minTime === undefined) minTime = '';
-              if(maxTime === undefined) maxTime = '';
-
-              var max = new Date(maxDate + " " + maxTime);
-              var min = new Date(minDate + " " + minTime);
-
-              var createdAt = new Date(DATE_COLUMN);
-
-              if (min == 'Invalid Date' && max == 'Invalid Date'){
-                  return true;
-              } else if (min != 'Invalid Date' && max == 'Invalid Date'){
-                  if (createdAt >= min) return true;
-              } else if (min == 'Invalid Date' && max != 'Invalid Date'){
-                  if (createdAt <= max) return true;
-              } else if ((createdAt >= min) && (createdAt <= max)){
-                  return true;
-              }
-              return false;
-          }
-      );
+            if (min == 'Invalid Date' && max == 'Invalid Date'){
+                return true;
+            } else if (min != 'Invalid Date' && max == 'Invalid Date'){
+                if (createdAt >= min) return true;
+            } else if (min == 'Invalid Date' && max != 'Invalid Date'){
+                if (createdAt <= max) return true;
+            } else if ((createdAt >= min) && (createdAt <= max)){
+                return true;
+            }
+            return false;
+        }
+    );
 }

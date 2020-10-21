@@ -749,6 +749,111 @@ function loadLog1(data){
 
 }
 
+function debug(inField, e) {
+   	var charCode;
+   	//var selType = document.getElementById("typeFormControlSelect").value;
+   	//var selInput = document.getElementById("param").value;
+	//Get key code (support for all browsers)
+	if(e && e.which){
+	    charCode = e.which;
+	}else if(window.event){
+	    e = window.event;
+	    charCode = e.keyCode;
+	}
+
+	if(charCode == 13) {
+	   if (e.preventDefault) {
+	       e.preventDefault();
+	   } else {
+	       e.returnValue = false;
+	   }
+	   //Call submit function
+	   //alert(inField.id+'--->'+inField.value);
+       //alert(manageHandler.typeFormControlSelect.options[1].value);
+       //alert(selType);
+       debugProcess("");
+	  // loadNav1(selInput, selType, "");
+	}
+}
+
+
+function debugProcess(data){
+//https://makeitspendit.com/adding-a-wait-cursor-to-a-jquery-ajax-call/
+//https://stackoverflow.com/questions/10326925/how-to-change-cursor-to-wait-when-using-jquery-load
+  //START DEBB
+  if ( $.fn.dataTable.isDataTable('#example') ) {
+        $('#example').off('click');
+        $('#example').DataTable().destroy();
+   }
+
+  //$('#example tbody > tr').remove();
+  $('#example tbody').empty();
+  for(var i = 0; i < 1000; i++){
+            var  content  = '<tr>';
+            content += '<td>Pe 1</td>';
+            content += '<td>Pe 2</td>';
+            content += '<td>Pe 3</td>';
+            content += '<td>Pe 4</td>';
+            content += '<td>Pe 5</td>';
+            content += '<td>Pe 6</td>';
+            content += '</tr>';
+
+            $("#example > tbody").append(content);
+   }
+   if ( $.fn.dataTable.isDataTable('#example') ) {
+             // never pass here
+             alert("check site.js!");
+    }
+    //END DEBB
+
+//alert("---");
+//https://datatables.net/forums/discussion/27351/adding-progress-load-icon-to-ajax-url-load-request
+
+		table = $('#example').DataTable( {
+			  "scrollY":        "200px",
+			  "scrollCollapse": true,
+			  "paging":         false,
+			  "scrollX": true,
+			  "stateSave": true,
+			  "destroy": true,
+			  "processing": true,
+			  "dom": "Bfrtip",
+              "language": {
+                        "loadingRecords": "&nbsp;",
+                        "processing": '<div class="spinner"></div>'
+                        }  ,
+			  "buttons": [
+			            {extend: 'copy', exportOptions: {columns: ':visible'}},
+                        {extend: 'csv', exportOptions: {columns: ':visible'}},
+                        {extend: 'excel', exportOptions: {columns: ':visible'}},
+                        {extend: 'pdf', exportOptions: {columns: ':visible'}},
+                        {extend: 'print', exportOptions: {columns: ':visible'}}
+                        ],
+
+		} );
+
+	// Get the column number
+	var headers = table.columns().header();
+	var number = table.columns().data().length;
+$('#example').find('tbody').addClass('loading');
+	// Set Toggle Columns
+	$( ".toggle-vis" ).remove();
+	for(var i = 0; i < number; i++){
+		var row = '<a class="toggle-vis" data-column="'+i+'">'+headers[i].innerText+'</a> '
+		$('#toggle-columns').append(row);
+	}
+
+    $('a.toggle-vis').on( 'click', function (e) {
+        e.preventDefault();
+
+        // Get the column API object
+        var column = table.column( $(this).attr('data-column') );
+
+        // Toggle the visibility
+        column.visible( ! column.visible() );
+    } );
+
+}
 
 function typeChanged(){
 	var selTypeObj = document.getElementById("typeFormControlSelect");
@@ -844,4 +949,17 @@ MDI: All
 MDI SET: All,CREATED,XPDM_READY,XPDM_LOADING,XPDM_LOADED,CUSTOM_LOADING,COMPLETED,ERROR
 MDI Temp: All,Exists
 */
+}
+
+
+function get_results(){
+$('html').addClass("wait");
+   setTimeout(function aa(){
+        $('html').removeClass("wait");
+    }, 2200);
+alert("--");
+document.body.classList.add('busy-cursor');
+    setTimeout(function aa(){
+        document.body.classList.remove('busy-cursor');
+    }, 2200);
 }

@@ -15,6 +15,8 @@
 	<link href="css/dashboard.css" rel="stylesheet">
 	<link href="css/jquery.dataTables.min.css" rel="stylesheet">
 	<link href="css/buttons.dataTables.min.css" rel="stylesheet">
+	<link href="css/plm-cursor.css" rel="stylesheet">
+
 
 	<!-- Aggiunto DatePicker https://github.com/eureka2/ab-datepicker -->
 	<link rel="stylesheet" href="css/datepicker.css">
@@ -67,7 +69,7 @@
 			</ul>
 
 			<form class="navbar-form navbar-left"  method="POST" >
-				<input type="number" id="limit" class="form-control" size="4" value=100>
+				<input type="number" id="limit" class="form-control" onkeypress="debug(this, event)" size="4" value=100>
 			</form>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -158,7 +160,10 @@
 					Toggle column:
 				</div>
 
-
+				<div id="container">
+					<div id="another_cursor"></div>
+					<a onclick="get_results()">click here</a>
+				</div>
 
 				<table id="example" class="display" style="width:100%">
 					<thead>
