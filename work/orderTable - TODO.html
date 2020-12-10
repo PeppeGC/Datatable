@@ -22,17 +22,21 @@
  	<script src="js/pdfmake.js"></script>
  	<script src="js/vfs_fonts.js"></script>
  	<script src="js/buttons.html5.min.js"></script>
+    <script src="js/dataTables.fixedHeader.min.js"></script>
 
 
 
     <script>
 	$(document).ready(function()  {
 		$('#example').DataTable( {
-			  "scrollY":        "200px",
-			  "scrollCollapse": true,
+			  "scrollCollapse": false,
 			  "paging":         false,
-			  "scrollX": true,
+			  "scrollX": false,
 			  "dom": "Bfrtip",
+			  "fixedHeader": {
+                    "header": false,
+                    "footer": true
+                },
 			  "buttons": [
 			              "copy", "csv", "excel", "pdf", "print"
 
@@ -42,7 +46,7 @@
  	</script>
 
 
-
+    <a href="http://blog.redturtle.it/2013/01/22/datatable.js-tabelle-per-tutti-i-gusti">Info</a>.
 
 <table id="example" class="display" style="width:100%">
         <thead>
@@ -87,6 +91,134 @@
                 <td>22</td>
                 <td>2012/03/29</td>
                 <td>$433,060</td>
+            </tr>
+            <tr>
+                <td>Cedric </td>
+                <td>Senior  Developer</td>
+                <td>Busto</td>
+                <td>20</td>
+                <td>2012/03/29</td>
+                <td>$500,060</td>
+            </tr>
+            <tr>
+                <td>Conte </td>
+                <td>Developer</td>
+                <td>Legnano</td>
+                <td>20</td>
+                <td>2012/03/29</td>
+                <td>$500,060</td>
+            </tr>
+            <tr>
+                <td>Sinior </td>
+                <td>Developer</td>
+                <td>Busto</td>
+                <td>20</td>
+                <td>2012/03/29</td>
+                <td>$500,060</td>
+            </tr>
+            <tr>
+                <td>Pino </td>
+                <td>Senior  Developer</td>
+                <td>Legnano</td>
+                <td>20</td>
+                <td>2012/03/29</td>
+                <td>$500,060</td>
+            </tr>
+            <tr>
+                <td>Patty </td>
+                <td>Senior  Developer</td>
+                <td>Busto</td>
+                <td>20</td>
+                <td>2012/03/29</td>
+                <td>$500,060</td>
+            </tr>
+            <tr>
+                <td>Gian </td>
+                <td>Developer</td>
+                <td>Legnano</td>
+                <td>20</td>
+                <td>2012/03/29</td>
+                <td>$500,060</td>
+            </tr>
+            <tr>
+                <td>Pippo </td>
+                <td>Developer</td>
+                <td>Busto</td>
+                <td>20</td>
+                <td>2012/03/29</td>
+                <td>$500,060</td>
+            </tr>
+            <tr>
+                <td>Salvo </td>
+                <td>Senior  Developer</td>
+                <td>Legnano</td>
+                <td>20</td>
+                <td>2012/03/29</td>
+                <td>$500,060</td>
+            </tr>
+            <tr>
+                <td>Pluto</td>
+                <td>Senior  Developer</td>
+                <td>Busto</td>
+                <td>20</td>
+                <td>2012/03/29</td>
+                <td>$500,060</td>
+            </tr>
+            <tr>
+                <td>Renato</td>
+                <td>Developer</td>
+                <td>Legnano</td>
+                <td>20</td>
+                <td>2012/03/29</td>
+                <td>$500,060</td>
+            </tr>
+            <tr>
+                <td>Sudo</td>
+                <td>Developer</td>
+                <td>Busto</td>
+                <td>20</td>
+                <td>2012/03/29</td>
+                <td>$500,060</td>
+            </tr>
+            <tr>
+                <td>Helena</td>
+                <td>Senior  Developer</td>
+                <td>Legnano</td>
+                <td>20</td>
+                <td>2012/03/29</td>
+                <td>$500,060</td>
+            </tr>
+            <tr>
+                <td>Ron</td>
+                <td>Senior  Developer</td>
+                <td>Busto</td>
+                <td>20</td>
+                <td>2012/03/29</td>
+                <td>$500,060</td>
+            </tr>
+            <tr>
+                <td>Federico</td>
+                <td>Developer</td>
+                <td>Legnano</td>
+                <td>20</td>
+                <td>2012/03/29</td>
+                <td>$500,060</td>
+            </tr>
+            <tr>
+                <td>Ludo</td>
+                <td>Developer</td>
+                <td>Busto</td>
+                <td>20</td>
+                <td>2012/03/29</td>
+                <td>$500,060</td>
+            </tr>
+            <tr>
+                <td>Filiberto</td>
+                <td>Senior  Developer</td>
+                <td>Legnano</td>
+                <td>20</td>
+                <td>2012/03/29</td>
+                <td>$500,060</td>
             </tr>
         </tbody>
         <tfoot>
