@@ -37,6 +37,9 @@
                     "header": false,
                     "footer": true
                 },
+              "preDrawCallback": function( settings ) {
+                     $('#example_info').prependTo($('thead'));
+               },
 			  "buttons": [
 			              "copy", "csv", "excel", "pdf", "print"
 
