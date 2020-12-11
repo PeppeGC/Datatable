@@ -38,7 +38,11 @@
                     "footer": true
                 },
               "drawCallback": function( settings ) {
-                     $('#example_info').clone(true).removeAttr("id").prependTo($('thead'));
+                     if ($( "#example_info_topbar" ).length) {
+                        // element already exist
+                        $( "#example_info_topbar" ).remove();
+                     }
+                     $('#example_info').clone(true).attr("id", "example_info_topbar").prependTo($('thead'));
                },
 			  "buttons": [
 			              "copy", "csv", "excel", "pdf", "print"
