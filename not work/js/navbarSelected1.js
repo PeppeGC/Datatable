@@ -7,6 +7,7 @@ requirejs.config({
 		"datatables.net-buttons": "../lib/dataTables.buttons.min"
 	},
 	"shim": {
+	    "bootstrap" : { deps: ["jquery"] },
 		"custom_leftbar": ["jquery"],
 	}
 });

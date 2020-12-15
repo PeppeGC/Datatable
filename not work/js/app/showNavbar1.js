@@ -23,7 +23,7 @@ define([
             //TO DO
             //$('body').addptodom();
             console.log('required plugins loading...');
-            dt();
+            //dt();
             console.log('required plugins loaded...');
 	    });
 
