@@ -59,6 +59,18 @@
                                     console.log("Selezionate " + count + " righe.");
                                     console.log(selectedRows);
                                  }
+                            },
+                            {
+                                text: 'Select all',
+                                action: function () {
+                                    table.rows().select();
+                                }
+                            },
+                            {
+                                text: 'Select none',
+                                action: function () {
+                                table.rows().deselect();
+                                }
                             }
 
         				]
