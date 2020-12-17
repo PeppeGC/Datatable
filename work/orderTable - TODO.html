@@ -53,7 +53,16 @@
 			              "copy", "csv", "excel", "pdf", "print",
 			               {
                                 text: 'Get selected data',
-                                 action: recovery();
+                                 action: function () {
+                                    //Recupero indici righe selezionate
+                                    var selectedRows = table.rows( { selected: true } ).indexes();
+                                    //Recupero colonna 0 dagli indici
+                                    var names = table.cells(selectedRows, 0).data();
+                                    //Per ogni nome recupero valore
+                                    names.each( function ( value, index ) {
+                                        recovery(value);
+                                    } );
+                                 }
                             },
                             {
                                 text: 'Select all',
@@ -70,15 +79,13 @@
 
         				]
 		} );
+
+
 	} );
 
-
-    function recovery() {
-        var selectedRows = table.rows( { selected: true } );
-        var count = selectedRows.count();
-        console.log("Selezionate " + count + " righe.");
-        console.log(selectedRows);
-     }
+    function recovery(name) {
+        alert("Selezionato nome: " + name);
+    };
  	</script>
 
 
