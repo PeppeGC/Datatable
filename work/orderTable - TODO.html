@@ -30,7 +30,7 @@
 
     <script>
 	$(document).ready(function()  {
-		$('#example').DataTable( {
+		var table = $('#example').DataTable( {
 			  "scrollCollapse": false,
 			  "paging":         false,
 			  "scrollX": false,
@@ -38,6 +38,9 @@
 			  "fixedHeader": {
                     "header": false,
                     "footer": true
+                },
+                select: {
+                    style: 'multi'
                 },
               "drawCallback": function( settings ) {
                      if ($( "#example_info_topbar" ).length) {
@@ -47,7 +50,16 @@
                      $('#example_info').clone(true).attr("id", "example_info_topbar").insertBefore($('#example'));
                },
 			  "buttons": [
-			              "copy", "csv", "excel", "pdf", "print"
+			              "copy", "csv", "excel", "pdf", "print",
+			               {
+                                text: 'Get selected data',
+                                 action: function () {
+                                    var selectedRows = table.rows( { selected: true } );
+                                    var count = selectedRows.count();
+                                    console.log("Selezionate " + count + " righe.");
+                                    console.log(selectedRows);
+                                 }
+                            }
 
         				]
 		} );
