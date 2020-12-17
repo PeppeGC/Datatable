@@ -1,13 +1,21 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
+<html lang="en">
 
-    <link rel="stylesheet" href="css/jquery.dataTables.min.css">
+
+<head>
+    <script data-main="js/recoverybarSelected" src="js/lib/require.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content=""><meta name="author" content="">
+
+    <title>Enovia Client</title>
+
 
     <link href="css/buttons.dataTables.min.css" rel="stylesheet">
-    <link href="css/dataTables.select.min.js" rel="stylesheet">
+    <link href="css/jquery.dataTables.min.css" rel="stylesheet">
+
+
 
     <style>
     td.details-control {
@@ -48,24 +56,34 @@
 <script>
 	$(document).ready(function()  {
 		var table = $('#example').DataTable( {
-			  "scrollCollapse": false,
-			  "paging":         false,
-			  "scrollX": false,
-			  "dom": "Bfrtip",
-			  "fixedHeader": {
-                    "header": false,
-                    "footer": true
-                },
-                "select": {
-                    "style": "multi"
-                },
-              "drawCallback": function( settings ) {
-                     if ($( "#example_info_topbar" ).length) {
-                        // element already exist
-                        $( "#example_info_topbar" ).remove();
-                     }
-                     $('#example_info').clone(true).attr("id", "example_info_topbar").insertBefore($('#example'));
-               },
+	               "scrollCollapse": true,
+	               "paging": false,
+	               //"scrollY": "550px",
+	               //"scrollX": true,
+	               "order": [[2, 'asc']],
+	               "info": true,
+	               "stateSave": true,
+	               "paging": false,
+	               "bPaginate": false,
+	               "fixedHeader": {
+	                   "header": true,
+	                   "footer": true
+	               },
+	               "select": {
+	                    "style": "multi"
+	                },
+	               "oLanguage": {
+	                   "sInfo" : "Showing _TOTAL_ entries",// Showing _START_ to _END_ of _TOTAL_ entries
+	                },
+	               "destroy": true,
+	          	   "dom": "Bfrtip",
+                   "drawCallback": function( settings ) {
+                         if ($( "#example_info_topbar" ).length) {
+                            // element already exist
+                            $( "#example_info_topbar" ).remove();
+                         }
+                         $('#example_info').clone(true).attr("id", "example_info_topbar").insertBefore($('#example'));
+                    },
 			  "buttons": [
 			              "copy", "csv", "excel", "pdf", "print",
 
