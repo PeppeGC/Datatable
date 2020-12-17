@@ -53,12 +53,7 @@
 			              "copy", "csv", "excel", "pdf", "print",
 			               {
                                 text: 'Get selected data',
-                                 action: function () {
-                                    var selectedRows = table.rows( { selected: true } );
-                                    var count = selectedRows.count();
-                                    console.log("Selezionate " + count + " righe.");
-                                    console.log(selectedRows);
-                                 }
+                                 action: recovery();
                             },
                             {
                                 text: 'Select all',
@@ -76,6 +71,14 @@
         				]
 		} );
 	} );
+
+
+    function recovery() {
+        var selectedRows = table.rows( { selected: true } );
+        var count = selectedRows.count();
+        console.log("Selezionate " + count + " righe.");
+        console.log(selectedRows);
+     }
  	</script>
 
 
