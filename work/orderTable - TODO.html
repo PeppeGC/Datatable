@@ -6,29 +6,46 @@
 
     <link rel="stylesheet" href="css/jquery.dataTables.min.css">
 
-	<link href="css/buttons.dataTables.min.css" rel="stylesheet">
+    <link href="css/buttons.dataTables.min.css" rel="stylesheet">
     <link href="css/dataTables.select.min.js" rel="stylesheet">
 
+    <style>
+    td.details-control {
+    	background: url('images/details_open.png') no-repeat center center;
+    	cursor: pointer;
+	}
+	tr.shown td.details-control {
+    	background: url('images/details_close.png') no-repeat center center;
+	}
+    </style>
 
+    <!--[if lt IE 9]>
+    <script src="js/lib/ie8-responsive-file-warning.js"></script>
+    <![endif]-->
+    <script src="js/lib/ie-emulation-modes-warning.js"></script>
+    <!--//--><!--[if lt IE 9]>
+    <script src="js/lib/html5shiv.min.js"></script>
+    <script src="js/lib/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.dataTables.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
 
- 	<script src="js/buttons.flash.min.js"></script>
- 	<script src="js/buttons.print.min.js"></script>
- 	<script src="js/dataTables.buttons.min.js"></script>
- 	<script src="js/jszip.min.js"></script>
- 	<script src="js/pdfmake.js"></script>
- 	<script src="js/vfs_fonts.js"></script>
- 	<script src="js/buttons.html5.min.js"></script>
-    <script src="js/dataTables.fixedHeader.min.js"></script>
-    <script src="js/dataTables.select.min.js"></script>
+<script src="js/buttons.flash.min.js"></script>
+<script src="js/buttons.print.min.js"></script>
+<script src="js/dataTables.buttons.min.js"></script>
+<script src="js/jszip.min.js"></script>
+<script src="js/pdfmake.js"></script>
+<script src="js/vfs_fonts.js"></script>
+<script src="js/buttons.html5.min.js"></script>
+<script src="js/dataTables.fixedHeader.min.js"></script>
+<script src="js/dataTables.select.min.js"></script>
 
 
 
-    <script>
+<script>
 	$(document).ready(function()  {
 		var table = $('#example').DataTable( {
 			  "scrollCollapse": false,
@@ -39,8 +56,8 @@
                     "header": false,
                     "footer": true
                 },
-                select: {
-                    style: 'multi'
+                "select": {
+                    "style": "multi"
                 },
               "drawCallback": function( settings ) {
                      if ($( "#example_info_topbar" ).length) {
@@ -51,32 +68,32 @@
                },
 			  "buttons": [
 			              "copy", "csv", "excel", "pdf", "print",
+
+                            {
+                                "text": "Select all",
+                                "action": function () {
+                                    table.rows().select();
+                                }
+                            },
+                            {
+                                "text": "Select none",
+                                "action": function () {
+                                    table.rows().deselect();
+                                }
+                            },
 			               {
-                                text: 'Get selected data',
-                                 action: function () {
+                                "text": "Get selected data",
+                                 "action": function () {
                                     //Recupero indici righe selezionate
                                     var selectedRows = table.rows( { selected: true } ).indexes();
                                     //Recupero colonna 0 dagli indici
-                                    var names = table.cells(selectedRows, 0).data();
+                                    var names = table.cells(selectedRows, 1).data();
                                     //Per ogni nome recupero valore
                                     names.each( function ( value, index ) {
                                         recovery(value);
                                     } );
                                  }
-                            },
-                            {
-                                text: 'Select all',
-                                action: function () {
-                                    table.rows().select();
-                                }
-                            },
-                            {
-                                text: 'Select none',
-                                action: function () {
-                                table.rows().deselect();
-                                }
                             }
-
         				]
 		} );
 
@@ -89,194 +106,90 @@
  	</script>
 
 
-    <a href="http://blog.redturtle.it/2013/01/22/datatable.js-tabelle-per-tutti-i-gusti">Info</a>.
+<a href="http://blog.redturtle.it/2013/01/22/datatable.js-tabelle-per-tutti-i-gusti">Info</a>.
 
 
 
 <table id="example" class="display" style="width:100%">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011/04/25</td>
-                <td>$320,800</td>
-            </tr>
-            <tr>
-                <td>Garrett Winters</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>63</td>
-                <td>2011/07/25</td>
-                <td>$170,750</td>
-            </tr>
-            <tr>
-                <td>Ashton Cox</td>
-                <td>Junior Technical Author</td>
-                <td>San Francisco</td>
-                <td>66</td>
-                <td>2009/01/12</td>
-                <td>$86,000</td>
-            </tr>
-            <tr>
-                <td>Cedric Kelly</td>
-                <td>Senior Javascript Developer</td>
-                <td>Edinburgh</td>
-                <td>22</td>
-                <td>2012/03/29</td>
-                <td>$433,060</td>
-            </tr>
-            <tr>
-                <td>Cedric </td>
-                <td>Senior  Developer</td>
-                <td>Busto</td>
-                <td>20</td>
-                <td>2012/03/29</td>
-                <td>$500,060</td>
-            </tr>
-            <tr>
-                <td>Conte </td>
-                <td>Developer</td>
-                <td>Legnano</td>
-                <td>20</td>
-                <td>2012/03/29</td>
-                <td>$500,060</td>
-            </tr>
-            <tr>
-                <td>Sinior </td>
-                <td>Developer</td>
-                <td>Busto</td>
-                <td>20</td>
-                <td>2012/03/29</td>
-                <td>$500,060</td>
-            </tr>
-            <tr>
-                <td>Pino </td>
-                <td>Senior  Developer</td>
-                <td>Legnano</td>
-                <td>20</td>
-                <td>2012/03/29</td>
-                <td>$500,060</td>
-            </tr>
-            <tr>
-                <td>Patty </td>
-                <td>Senior  Developer</td>
-                <td>Busto</td>
-                <td>20</td>
-                <td>2012/03/29</td>
-                <td>$500,060</td>
-            </tr>
-            <tr>
-                <td>Gian </td>
-                <td>Developer</td>
-                <td>Legnano</td>
-                <td>20</td>
-                <td>2012/03/29</td>
-                <td>$500,060</td>
-            </tr>
-            <tr>
-                <td>Pippo </td>
-                <td>Developer</td>
-                <td>Busto</td>
-                <td>20</td>
-                <td>2012/03/29</td>
-                <td>$500,060</td>
-            </tr>
-            <tr>
-                <td>Salvo </td>
-                <td>Senior  Developer</td>
-                <td>Legnano</td>
-                <td>20</td>
-                <td>2012/03/29</td>
-                <td>$500,060</td>
-            </tr>
-            <tr>
-                <td>Pluto</td>
-                <td>Senior  Developer</td>
-                <td>Busto</td>
-                <td>20</td>
-                <td>2012/03/29</td>
-                <td>$500,060</td>
-            </tr>
-            <tr>
-                <td>Renato</td>
-                <td>Developer</td>
-                <td>Legnano</td>
-                <td>20</td>
-                <td>2012/03/29</td>
-                <td>$500,060</td>
-            </tr>
-            <tr>
-                <td>Sudo</td>
-                <td>Developer</td>
-                <td>Busto</td>
-                <td>20</td>
-                <td>2012/03/29</td>
-                <td>$500,060</td>
-            </tr>
-            <tr>
-                <td>Helena</td>
-                <td>Senior  Developer</td>
-                <td>Legnano</td>
-                <td>20</td>
-                <td>2012/03/29</td>
-                <td>$500,060</td>
-            </tr>
-            <tr>
-                <td>Ron</td>
-                <td>Senior  Developer</td>
-                <td>Busto</td>
-                <td>20</td>
-                <td>2012/03/29</td>
-                <td>$500,060</td>
-            </tr>
-            <tr>
-                <td>Federico</td>
-                <td>Developer</td>
-                <td>Legnano</td>
-                <td>20</td>
-                <td>2012/03/29</td>
-                <td>$500,060</td>
-            </tr>
-            <tr>
-                <td>Ludo</td>
-                <td>Developer</td>
-                <td>Busto</td>
-                <td>20</td>
-                <td>2012/03/29</td>
-                <td>$500,060</td>
-            </tr>
-            <tr>
-                <td>Filiberto</td>
-                <td>Senior  Developer</td>
-                <td>Legnano</td>
-                <td>20</td>
-                <td>2012/03/29</td>
-                <td>$500,060</td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
-            </tr>
-        </tfoot>
-    </table>
+    <thead>
+    <tr>
+        <th>Info</th>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Office</th>
+        <th>Age</th>
+        <th>Start date</th>
+        <th>Salary</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td class="details-control"></td>
+        <td>Tiger Nixon</td>
+        <td>System Architect</td>
+        <td>Edinburgh</td>
+        <td>61</td>
+        <td>2011/04/25</td>
+        <td>$320,800</td>
+    </tr>
+    <tr>
+        <td class="details-control"></td>
+        <td>Garrett Winters</td>
+        <td>Accountant</td>
+        <td>Tokyo</td>
+        <td>63</td>
+        <td>2011/07/25</td>
+        <td>$170,750</td>
+    </tr>
+    <tr>
+        <td class="details-control"></td>
+        <td>Ashton Cox</td>
+        <td>Junior Technical Author</td>
+        <td>San Francisco</td>
+        <td>66</td>
+        <td>2009/01/12</td>
+        <td>$86,000</td>
+    </tr>
+    <tr>
+        <td class="details-control"></td>
+        <td>Cedric Kelly</td>
+        <td>Senior Javascript Developer</td>
+        <td>Edinburgh</td>
+        <td>22</td>
+        <td>2012/03/29</td>
+        <td>$433,060</td>
+    </tr>
+    <tr>
+        <td class="details-control"></td>
+        <td>Cedric </td>
+        <td>Senior  Developer</td>
+        <td>Busto</td>
+        <td>20</td>
+        <td>2012/03/29</td>
+        <td>$500,060</td>
+    </tr>
+    <tr>
+        <td class="details-control"></td>
+        <td>Conte </td>
+        <td>Developer</td>
+        <td>Legnano</td>
+        <td>20</td>
+        <td>2012/03/29</td>
+        <td>$500,060</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <th>Info</th>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Office</th>
+        <th>Age</th>
+        <th>Start date</th>
+        <th>Salary</th>
+    </tr>
+    </tfoot>
+</table>
 
 </body>
 </html>
