@@ -82,11 +82,7 @@
 	               "destroy": true,
 	          	   "dom": "Bfrtip",
                    "drawCallback": function( settings ) {
-                         if ($( "#example_info_topbar" ).length) {
-                            // element already exist
-                            $( "#example_info_topbar" ).remove();
-                         }
-                         $('#example_info').clone(true).attr("id", "example_info_topbar").insertBefore($('#example'));
+                         updateTopBar();
                     },
 			  "buttons": [
 			              "copy", "csv", "excel", "pdf", "print",
@@ -121,11 +117,26 @@
 
 		table.buttons( [ 5, 6, 7 ] ).nodes().css("background", "red");
 
+        //In selezione e deselezione aggiorno top bar
+        table.on( 'select', function ( e, dt, type, indexes ) {
+            updateTopBar();
+        } );
+        table.on( 'deselect', function ( e, dt, type, indexes ) {
+            updateTopBar();
+        } );
 
 	} );
 
     function recovery(name) {
         alert("Selezionato nome: " + name);
+    };
+
+    function updateTopBar(){
+        if ($( "#example_info_topbar" ).length) {
+            // element already exist
+            $( "#example_info_topbar" ).remove();
+        }
+        $('#example_info').clone(true).attr("id", "example_info_topbar").insertBefore($('#example'));
     };
  	</script>
 
