@@ -77,7 +77,7 @@
 	                    "style": "multi"
 	                },
 	               "oLanguage": {
-	                   "sInfo" : "Showing _TOTAL_ entries",// Showing _START_ to _END_ of _TOTAL_ entries
+	                   "sInfo" : "Showing _TOTAL_ entries ",// Showing _START_ to _END_ of _TOTAL_ entries
 	                },
 	               "destroy": true,
 	          	   "dom": "Bfrtip",
@@ -104,6 +104,20 @@
                                  "action": function () {
                                     //Recupero indici righe selezionate
                                     var selectedRows = table.rows( { selected: true } ).indexes();
+
+                                    var selectedRows1 = table.rows( { selected: true } ).data().toArray();
+                                    console.log("Selected Values:");
+                                    console.log(selectedRows1);
+                                    var json = JSON.stringify( selectedRows1 );
+
+                                    //Recupero chiavi da Table Header
+                                    var header = table.columns().header().map(x => x.innerHTML).toArray();
+                                    console.log("Header Keys:");
+                                    console.log(header);
+
+                                    //Test Map Object
+                                    convertToJSONObject(header, selectedRows1);
+
                                     //Recupero colonna 0 dagli indici
                                     var names = table.cells(selectedRows, 1).data();
                                     //Per ogni nome recupero valore
@@ -128,7 +142,7 @@
 	} );
 
     function recovery(name) {
-        alert("Selezionato nome: " + name);
+        console.log("Selezionato nome: " + name);
     };
 
     function updateTopBar(){
@@ -138,6 +152,22 @@
         }
         $('#example_info').clone(true).attr("id", "example_info_topbar").insertBefore($('#example'));
     };
+
+    function convertToJSONObject(keys, values){
+        var myarray = [];
+        for (var x = 0; x < values.length; x++) {
+            var objRow = {};
+            for (var i = 0; i < keys.length; i++) {
+              var name = keys[i];
+              var value = values[x][i];
+              objRow[name] = value;
+            }
+            myarray.push(objRow);
+        }
+        var json = JSON.stringify( myarray );
+        console.log("JSON Obj:");
+        console.log(json);
+    }
  	</script>
 
 
