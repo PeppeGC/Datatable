@@ -47,15 +47,16 @@
 
 <script src="js/buttons.colVis.min.js"></script>
 
-<script src="js/datetime-moment.js"></script>
 <script src="js/moment.min.js"></script>
+<script src="js/datetime-moment.js"></script>
+
 <script src="js/dataTables.searchBuilder.min.js"></script>
 
 <script>
 	$(document).ready(function()  {
-        //$.fn.dataTable.moment("MM/DD/YYYY h:mm:ss a");
+        $.fn.dataTable.moment("MM/DD/YYYY h:mm:ss A");
 
-var back30Days=moment().subtract(30, 'days').format("MM/DD/YYYY h:mm:ss a");
+var back30Days=moment().subtract(30, 'days').format("MM/DD/YYYY h:mm:ss A");
 alert(back30Days);
 console.log('back30Days --> ' + back30Days);
 
