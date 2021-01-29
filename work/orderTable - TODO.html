@@ -54,7 +54,7 @@
 
 <script>
 	$(document).ready(function()  {
-        $.fn.dataTable.moment("MM/DD/YYYY h:mm:ss A");
+        $.fn.dataTable.moment("M/D/YYYY hh:mm:ss A");
 
 var back30Days=moment().subtract(30, 'days').format("MM/DD/YYYY h:mm:ss A");
 alert(back30Days);
